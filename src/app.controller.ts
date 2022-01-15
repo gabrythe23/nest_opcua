@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern("ns=3;i=1004")
-  readOPCData(@Payload() data: object) {
-    return data;
+  async readOPCData(@Payload('value') value: number) {
+    await this.appService.saveData(value, "ns=3;i=1004");
   }
 }
