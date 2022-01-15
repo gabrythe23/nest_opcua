@@ -1,9 +1,21 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import {MongooseModule} from '@nestjs/mongoose';
 import { AppService } from './app.service';
+import {Data, DataSchema} from "./schemas/data.schema";
+import {AppController} from "./app.controller";
 
 @Module({
-  imports: [],
+    imports: [
+        MongooseModule.forRoot(
+            process.env.MONGODB_URI,
+            {
+                useUnifiedTopology: true
+            }
+        ),
+        MongooseModule.forFeature([
+            {name: Data.name, schema: DataSchema},
+        ]),
+    ],
   controllers: [AppController],
   providers: [AppService],
 })
