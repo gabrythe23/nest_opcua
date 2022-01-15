@@ -10,9 +10,9 @@ export class AppController {
       private readonly socketGateway: AppGateway,
   ) {}
 
-  @MessagePattern("ns=3;i=1004")
+  @MessagePattern(process.env.OPCUA_NODE)
   async readOPCData(@Payload('value') value: number) {
-    const node : string = "ns=3;i=1004";
+    const node : string = process.env.OPCUA_NODE;
     await this.appService.saveData(value, node);
     this.socketGateway.handleMessage({name:node, text:value})
   }
