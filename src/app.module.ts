@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import {MongooseModule} from '@nestjs/mongoose';
 import { AppService } from './app.service';
 import {Data, DataSchema} from "./schemas/data.schema";
+import {AppController} from "./app.controller";
 
 @Module({
     imports: [
