@@ -3,6 +3,7 @@ import {MongooseModule} from '@nestjs/mongoose';
 import { AppService } from './app.service';
 import {Data, DataSchema} from "./schemas/data.schema";
 import {AppController} from "./app.controller";
+import { AppGateway } from './app.gateway';
 
 @Module({
     imports: [
@@ -17,6 +18,9 @@ import {AppController} from "./app.controller";
         ]),
     ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+      AppGateway,
+      AppService,
+  ],
 })
 export class AppModule {}
